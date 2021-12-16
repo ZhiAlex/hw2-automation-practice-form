@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group 'com.zhialex.hw'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext{
+    selenide = '5.25.0'
+    junitJupiterApi = '5.8.1'
+    junitJupiterEngine = '5.8.1'
+    javafaker = '1.0.2'
+    lombok = '1.18.22'
+}
+
+dependencies {
+    testImplementation (
+            "org.junit.jupiter:junit-jupiter-api:${rootProject.ext.junitJupiterApi}",
+            "com.github.javafaker:javafaker:${rootProject.ext.javafaker}",
+            "com.codeborne:selenide:${rootProject.ext.selenide}",
+            "org.projectlombok:lombok:${rootProject.ext.lombok}"
+    )
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${rootProject.ext.junitJupiterEngine}"
+}
+
+test {
+    useJUnitPlatform()
+}
