@@ -1,9 +1,9 @@
-package tests;
+package hw1.tests;
 
 import com.codeborne.selenide.Configuration;
-import model.AutomationPracticeForm;
+import hw1.model.AutomationPracticeForm;
+import hw1.pages.AutomationPracticeFormPage;
 import org.junit.jupiter.api.BeforeAll;
-import pages.AutomationPracticeFormPage;
 
 import static com.codeborne.selenide.Selenide.open;
 

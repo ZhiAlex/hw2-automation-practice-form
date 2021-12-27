@@ -1,4 +1,4 @@
-package model;
+package hw1.model;
 
 import com.github.javafaker.Faker;
 
