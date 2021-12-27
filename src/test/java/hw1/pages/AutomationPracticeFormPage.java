@@ -1,4 +1,4 @@
-package pages;
+package hw1.pages;
 
 import org.openqa.selenium.By;
 
