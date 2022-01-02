@@ -9,7 +9,7 @@ repositories {
     mavenCentral()
 }
 
-ext{
+ext {
     selenide = '5.25.0'
     junitJupiterApi = '5.8.1'
     junitJupiterEngine = '5.8.1'
@@ -18,11 +18,12 @@ ext{
 }
 
 dependencies {
-    testImplementation (
+    compileOnly "org.projectlombok:lombok:${rootProject.ext.lombok}"
+    annotationProcessor "org.projectlombok:lombok:${rootProject.ext.lombok}"
+    testImplementation(
             "org.junit.jupiter:junit-jupiter-api:${rootProject.ext.junitJupiterApi}",
             "com.github.javafaker:javafaker:${rootProject.ext.javafaker}",
-            "com.codeborne:selenide:${rootProject.ext.selenide}",
-            "org.projectlombok:lombok:${rootProject.ext.lombok}"
+            "com.codeborne:selenide:${rootProject.ext.selenide}"
     )
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${rootProject.ext.junitJupiterEngine}"
 }
