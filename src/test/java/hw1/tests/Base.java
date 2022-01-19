@@ -18,7 +18,6 @@ public class Base {
 
     @BeforeAll
     static void beforeAll() {
-        Configuration.startMaximized = true;
         Configuration.holdBrowserOpen = false;
     }
 }

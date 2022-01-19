@@ -1,31 +1,40 @@
 plugins {
     id 'java'
+    id "io.qameta.allure" version "2.9.6"
+    id "io.freefair.lombok" version "6.3.0"
+
 }
 
-group 'com.zhialex.hw'
+group 'qa.guru.allure'
 version '1.0-SNAPSHOT'
+
+allure {
+    report {
+        version.set("2.17.2")
+    }
+    adapter {
+        autoconfigure.set(true)
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set("2.17.2")
+            }
+        }
+    }
+}
 
 repositories {
     mavenCentral()
 }
 
-ext {
-    selenide = '5.25.0'
-    junitJupiterApi = '5.8.1'
-    junitJupiterEngine = '5.8.1'
-    javafaker = '1.0.2'
-    lombok = '1.18.22'
-}
-
 dependencies {
-    compileOnly "org.projectlombok:lombok:${rootProject.ext.lombok}"
-    annotationProcessor "org.projectlombok:lombok:${rootProject.ext.lombok}"
     testImplementation(
-            "org.junit.jupiter:junit-jupiter-api:${rootProject.ext.junitJupiterApi}",
-            "com.github.javafaker:javafaker:${rootProject.ext.javafaker}",
-            "com.codeborne:selenide:${rootProject.ext.selenide}"
+            'org.junit.jupiter:junit-jupiter-api:5.7.2',
+            'io.qameta.allure:allure-selenide:2.17.2',
+            'com.codeborne:selenide:6.1.2'
     )
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${rootProject.ext.junitJupiterEngine}"
+    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.7.2')
+    implementation ('com.github.javafaker:javafaker:1.0.2', 'org.aspectj:aspectjweaver:1.9.7')
 }
 
 test {
