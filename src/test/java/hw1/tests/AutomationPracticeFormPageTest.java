@@ -9,22 +9,11 @@ import static com.codeborne.selenide.Selenide.$;
 public class AutomationPracticeFormPageTest extends Base {
 
     @Test
-    public void fillAutomationPracticeFormPage() throws InterruptedException {
+    public void fillAutomationPracticeFormPage() {
+
         openAutomationPracticeFormPage();
-        automationPracticeFormPage.setFName(form.getfName());
-        automationPracticeFormPage.setLName(form.getlName());
-        automationPracticeFormPage.setEmail(form.getEmail());
-        automationPracticeFormPage.setGender(form.getGender());
-        automationPracticeFormPage.setMobilePhone(form.getPhone());
-        automationPracticeFormPage.setSubject(form.getSubjects().get(0));
-        automationPracticeFormPage.setSubject(form.getSubjects().get(1));
-        automationPracticeFormPage.setSubject(form.getSubjects().get(2));
-        automationPracticeFormPage.checkHobbiesCheckbox(1);
-        automationPracticeFormPage.loadFile(form.getFilepath());
-        automationPracticeFormPage.setAddress(form.getAddress());
-        automationPracticeFormPage.setState(form.getStates().get(0));
-        automationPracticeFormPage.setCity(form.getCities().get(0));
-        automationPracticeFormPage.clickSubmitButton();
+
+        automationPracticeFormPage.setValues(form);
 
         $(byText(form.getfName() + " " + form.getlName())).shouldBe(visible);
         $(byText(form.getEmail())).shouldBe(visible);
@@ -39,5 +28,4 @@ public class AutomationPracticeFormPageTest extends Base {
         $(byText(form.getAddress())).shouldBe(visible);
         $(byText(form.getStates().get(0) + " " + form.getCities().get(0))).shouldBe(visible);
     }
-
 }
