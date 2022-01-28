@@ -11,18 +11,6 @@ public class PracticeFormViewModelPageTest extends BaseTest {
 
         automationPracticeFormPage.setValues(form);
 
-        System.out.println(form.fName + " " + form.lName);
-        System.out.println(form.email);
-        System.out.println(form.gender);
-        System.out.println(form.phone);
-        System.out.println(form.birthday);
-        System.out.println(form.subjects.get(0) + ", " +
-                form.subjects.get(1) + ", " + form.subjects.get(2));
-        System.out.println(form.hobbies);
-        System.out.println(form.filepath);
-        System.out.println(form.address);
-        System.out.println(form.states.get(0) + form.cities.get(0));
-
         automationPracticeFormPage
                 .checkResultFields("Student Name", form.fName + " " + form.lName)
                 .checkResultFields("Student Email", form.email)
