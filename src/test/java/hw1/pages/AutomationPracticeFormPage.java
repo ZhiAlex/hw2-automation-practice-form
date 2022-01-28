@@ -1,12 +1,15 @@
 package hw1.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import hw1.model.AutomationPracticeForm;
+import hw1.model.PracticeFormViewModel;
 import org.openqa.selenium.By;
 
 import java.io.File;
 
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
 public class AutomationPracticeFormPage {
 
@@ -20,7 +23,12 @@ public class AutomationPracticeFormPage {
             currentAddress = $("#currentAddress"),
             stateInput = $("#react-select-3-input"),
             cityInput = $("#react-select-4-input"),
-            submitButton = $("#submit");
+            submitButton = $("#submit"),
+            resultTable = $(".table-responsive");
+
+    public void openPage() {
+        open("https://demoqa.com/automation-practice-form");
+    }
 
     public void setFName(String fName) {
         firstname.setValue(fName);
@@ -47,8 +55,8 @@ public class AutomationPracticeFormPage {
         subjectsInput.setValue(subject).pressEnter();
     }
 
-    public void checkHobbiesCheckbox(int value) {
-        String xpath = String.format("//div[@id='hobbiesWrapper']//input[@value='%s']", value);
+    public void checkHobbiesCheckbox(String value) {
+        String xpath = String.format("//div[@id='hobbiesWrapper']//label[text()='%s']", value);
         $(By.xpath(xpath)).parent().click();
     }
 
@@ -72,20 +80,26 @@ public class AutomationPracticeFormPage {
         submitButton.scrollTo().click();
     }
 
-    public void setValues(AutomationPracticeForm form) {
-        setFName(form.getfName());
-        setLName(form.getlName());
-        setEmail(form.getEmail());
-        setGender(form.getGender());
-        setMobilePhone(form.getPhone());
-        setSubject(form.getSubjects().get(0));
-        setSubject(form.getSubjects().get(1));
-        setSubject(form.getSubjects().get(2));
-        checkHobbiesCheckbox(1);
-        loadFile(form.getFilepath());
-        setAddress(form.getAddress());
-        setState(form.getStates().get(0));
-        setCity(form.getCities().get(0));
+    public void setValues(PracticeFormViewModel form) {
+        setFName(form.fName);
+        setLName(form.lName);
+        setEmail(form.email);
+        setGender(form.gender);
+        setMobilePhone(form.phone);
+        setSubject(form.subjects.get(0));
+        setSubject(form.subjects.get(1));
+        setSubject(form.subjects.get(2));
+        checkHobbiesCheckbox(form.hobbies);
+        loadFile(form.filepath);
+        setAddress(form.address);
+        setState(form.states.get(0));
+        setCity(form.cities.get(0));
         clickSubmitButton();
+    }
+
+    public AutomationPracticeFormPage checkResultFields(String label, String value) {
+        resultTable.$(byText(label))
+                .parent().shouldHave(text(value));
+        return this;
     }
 }
